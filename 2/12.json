@@ -1,0 +1,10 @@
+{
+  "bindings": [
+    {
+      "role": "Storage Blob Data Reader",
+      "members": [
+        "user:example@domain.com"
+      ]
+    }
+  ]
+}

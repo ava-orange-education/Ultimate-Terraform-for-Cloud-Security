@@ -1,0 +1,7 @@
+jobs:
+  terraform:
+    steps:
+      - name: Create Workspace
+        run: terraform workspace select ${{ env.TF_WORKSPACE }}
+      - name: Apply Terraform
+        run: terraform apply -auto-approve
