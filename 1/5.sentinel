@@ -1,0 +1,3 @@
+policy "enforce_encryption" {
+  source = "./policies/encryption.sentinel"
+}
