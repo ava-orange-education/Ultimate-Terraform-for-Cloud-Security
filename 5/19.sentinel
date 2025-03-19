@@ -1,0 +1,11 @@
+import "tfplan/v2" as tfplan
+
+policy "secure_azure_vm" {
+  main = rule {
+    all tfplan.resource_changes.azurerm_virtual_machine as vm {
+      vm.change.after.os_disk[0].encryption_settings.enabled and
+      vm.change.after.size in ["Standard_D2s_v3", "Standard_D4s_v3"] and
+      vm.change.after.network_interface_ids != []
+    }
+  }
+}

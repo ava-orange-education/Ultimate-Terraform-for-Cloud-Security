@@ -1,0 +1,8 @@
+policy "storage_encryption" {
+  main = rule {
+    all tfplan.resource_changes as resource {
+      resource.type in ["aws_s3_bucket", "azurerm_storage_account", "google_storage_bucket"] and
+      resource.change.after.server_side_encryption_configuration != null
+    }
+  }
+}

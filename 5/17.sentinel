@@ -1,0 +1,12 @@
+import "tfplan/v2" as tfplan
+
+policy "s3_no_public_access" {
+  main = rule {
+    all tfplan.resource_changes.aws_s3_bucket as bucket {
+      bucket.change.after.block_public_acls and
+      bucket.change.after.block_public_policy and
+      bucket.change.after.ignore_public_acls and
+      bucket.change.after.restrict_public_buckets
+    }
+  }
+}

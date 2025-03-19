@@ -1,0 +1,13 @@
+{
+    "resource": {
+      "type": "azurerm_network_security_group",
+      "properties": {
+        "security_rules": [
+          {
+            "name": "deny_all",
+            "access": "Deny"
+          }
+        ]
+      }
+    }
+  }
