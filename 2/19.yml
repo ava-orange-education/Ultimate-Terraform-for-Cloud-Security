@@ -1,0 +1,10 @@
+name: Drift Detection
+on:
+  schedule:
+    - cron: "0 3 * * *"
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hashicorp/setup-terraform@v1
+      - run: terraform plan

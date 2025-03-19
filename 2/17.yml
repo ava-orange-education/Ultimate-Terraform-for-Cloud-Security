@@ -1,0 +1,16 @@
+stages:
+  - plan
+  - apply
+
+plan:
+  script:
+    - terraform init
+    - terraform plan -out=tfplan
+  artifacts:
+    paths:
+      - tfplan
+
+apply:
+  script:
+    - terraform apply tfplan
+  when: manual

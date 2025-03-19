@@ -1,0 +1,46 @@
+#AWS CodeBuild
+version: 0.2  
+phases:  
+  build:  
+    commands:  
+      - terraform init  
+      - terraform apply -auto-approve  
+
+#GitHub Actions
+name: Terraform  
+on: push  
+jobs:  
+  terraform:  
+    steps:  
+      - name: Init  
+        run: terraform init  
+      - name: Apply  
+        run: terraform apply -auto-approve  
+
+#Jenkins Pipeline
+pipeline {
+    agent any
+    stages {
+        stage('Terraform Apply') {
+            steps {
+                sh 'terraform init'
+                sh 'terraform apply -auto-approve'
+            }
+        }
+    }
+}
+
+#Azure Pipeline
+trigger:
+- main
+- script: terraform init
+  displayName: 'Terraform Init'
+- script: terraform apply -auto-approve
+  displayName: 'Terraform Apply'
+
+#Google Cloud Build
+steps:
+- name: 'hashicorp/terraform:1.10.3'
+  args: ['init']
+- name: 'hashicorp/terraform:1.10.3'
+  args: ['apply', '-auto-approve']
