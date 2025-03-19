@@ -1,0 +1,8 @@
+import "tfplan/v2" as tfplan  
+policy "s3_bucket_encryption" {  
+  main = rule {  
+    all tfplan.resource_changes.aws_s3_bucket as bucket {  
+      bucket.change.after.server_side_encryption_configuration[0].rule.apply_server_side_encryption_by_default  
+    }  
+  }  
+}

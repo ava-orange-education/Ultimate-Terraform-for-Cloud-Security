@@ -1,0 +1,13 @@
+{
+  "tfplan": {
+    "resource_changes": {
+      "azurerm_storage_account.test": {
+        "change": {
+          "after": {
+            "enable_blob_encryption": true
+          }
+        }
+      }
+    }
+  }
+}

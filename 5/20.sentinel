@@ -1,0 +1,13 @@
+import "tfplan/v2" as tfplan
+
+policy "secure_gcp_compute_engine" {
+  main = rule {
+    all tfplan.resource_changes.google_compute_instance as instance {
+      instance.change.after.boot_disk[0].disk_encryption_key != null and
+      instance.change.after.machine_type in ["e2-standard-2", "n2-standard-4"] and
+      not any instance.change.after.network_interface as ni {
+        ni.access_config != null
+      }
+    }
+  }
+}

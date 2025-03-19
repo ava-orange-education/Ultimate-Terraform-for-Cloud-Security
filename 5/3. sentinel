@@ -1,0 +1,8 @@
+import "tfplan/v2" as tfplan
+policy "gcp_instance_type" {
+  main = rule {
+    all tfplan.resource_changes.google_compute_instance as instance {
+      instance.change.after.machine_type in ["e2-micro", "e2-small"]
+    }
+  }
+}

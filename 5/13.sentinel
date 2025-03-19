@@ -1,0 +1,7 @@
+policy "azure_iam_role_drift" {
+  main = rule {
+    all tfplan.resource_changes.azurerm_role_assignment as role {
+      role.change.after == role.change.before
+    }
+  }
+}

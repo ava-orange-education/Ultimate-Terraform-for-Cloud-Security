@@ -1,0 +1,7 @@
+policy "s3_no_public" {
+  main = rule {
+    all tfplan.resource_changes.aws_s3_bucket as bucket {
+      bucket.change.after.acl != "public-read"
+    }
+  }
+}

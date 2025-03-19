@@ -1,0 +1,8 @@
+import "tfplan/v2" as tfplan
+policy "azure_storage_encryption" {
+  main = rule {
+    all tfplan.resource_changes.azurerm_storage_account as storage {
+      storage.change.after.enable_blob_encryption == true
+    }
+  }
+}
