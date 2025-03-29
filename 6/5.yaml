@@ -1,0 +1,16 @@
+name: Terrascan Scan
+
+on: [pull_request]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Run Terrascan
+        uses: tenable/terrascan-action@v1
+        with:
+          iac_type: terraform
+          iac_version: v14
