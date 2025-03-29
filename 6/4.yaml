@@ -1,0 +1,14 @@
+name: TFSec Scan
+
+on: [pull_request]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run TFSec
+        uses: aquasecurity/tfsec-action@v1
+        with:
+          working-directory: .

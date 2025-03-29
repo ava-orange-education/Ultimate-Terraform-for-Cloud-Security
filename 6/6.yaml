@@ -1,0 +1,7 @@
+definition:
+  cond_type: attribute
+  resource_types:
+    - azurerm_storage_account
+  attribute: enable_https_traffic_only
+  operator: equals
+  expected_value: true
