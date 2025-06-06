@@ -1,0 +1,27 @@
+# .kitchen.yml
+driver:
+  name: terraform
+  state_file: "terraform.tfstate"
+
+provisioner:
+  name: terraform
+  variable_files:
+    - terraform.tfvars
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: aws
+
+suites:
+  - name: default
+    verifier:
+      inspec_tests:
+        - test/integration/default
+
+# test/integration/default/default_test.rb
+describe aws_s3_bucket(bucket_name: 'example-bucket') do
+  it { should exist }
+  its('public_access_block') { should cmp true }
+end

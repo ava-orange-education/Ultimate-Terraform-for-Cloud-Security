@@ -1,0 +1,11 @@
+name: Secret Scan
+on: pull_request
+
+jobs:
+  secret_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: zricethezav/gitleaks-action@v1
+        with:
+          config-path: .gitleaks.toml
