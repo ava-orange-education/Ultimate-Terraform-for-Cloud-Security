@@ -1,0 +1,8 @@
+stages:
+  - tfsec
+  
+tfsec:
+  image: aquasec/tfsec
+  script:
+    - tfsec ./terraform
+  allow_failure: false
